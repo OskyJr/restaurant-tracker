@@ -5,33 +5,44 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { RestaurantInterface } from '../interfaces/RestaurantInterface';
+import { Box, Rating } from '@mui/material';
 
 export interface RestaurantCardProps extends RestaurantInterface {
+    onClickCallback: (id: string, isOpen: boolean) => void
+}
 
-};
+export const RestaurantCard = (props: RestaurantCardProps) => {
 
-export default function RestaurantCard(props: RestaurantCardProps) {
+    const { id, name, rating, description, images, onClickCallback } = props;
 
-    const { id, name, address, rating, description, images } = props;
+    const onClick = () => {
+        onClickCallback(id, true);
+    }
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card key={id} sx={{ maxWidth: 345, borderRadius: '1rem' }}>
             <CardMedia
                 sx={{ height: 140 }}
                 image={images.length ? images[0] : ''}
                 title={name}
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography fontWeight="bold" gutterBottom variant="h5" component="div">
                     {name}
                 </Typography>
+                <Rating
+                    readOnly
+                    name="simple-controlled"
+                    value={rating}
+                />
                 <Typography variant="body2" color="text.secondary">
                     {description}
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Share</Button>
-                <Button size="small">Learn More</Button>
+                <Box display="flex" justifyContent="flex-end">
+                    <Button onClick={onClick} size="small">View More</Button>
+                </Box>
             </CardActions>
         </Card>
     );
