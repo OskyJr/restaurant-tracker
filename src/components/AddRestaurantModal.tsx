@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { Rating, SxProps, TextField, Theme } from '@mui/material';
+import { Rating, SxProps, TextField, Theme, useMediaQuery, useTheme } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { ImageUpload } from '../assets/ImageUpload';
 
@@ -24,6 +24,10 @@ export const AddRestaurantModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState<number | null>(2);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  style.width = isMobile ? '90%' : isTablet ? '75%' : 400;
 
   return (
     <Box p={2}>

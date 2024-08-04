@@ -12,6 +12,7 @@ import {
   SxProps,
   TextField,
   Theme,
+  useMediaQuery,
 } from '@mui/material';
 import { ImageUpload } from '../assets/ImageUpload';
 import { RestaurantCardProps } from './RestaurantCard';
@@ -23,6 +24,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import theme from '../theme';
 
 const style: SxProps<Theme> = {
   position: 'absolute',
@@ -37,6 +39,10 @@ const style: SxProps<Theme> = {
 };
 
 export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.between('sm', 'md'));
+  style.width = isMobile ? '90%' : isTablet ? '75%' : 400;
+
   const [open] = React.useState(true);
   const [popoverOpen, setPopoverOpen] = React.useState(false);
   const [dialogOpen, setDialogOpen] = React.useState(false);
