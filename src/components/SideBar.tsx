@@ -16,8 +16,8 @@ export const SideBar = () => {
                     defaultValue="Name"
                     name="radio-buttons-group"
                 >
-                    <FormControlLabel value="Name" control={<Radio />} label="Name" />
-                    <FormControlLabel value="Date" control={<Radio />} label="Date" />
+                    <FormControlLabel value="Name" control={<Radio color='secondary' />} label="Name" />
+                    <FormControlLabel value="Date" control={<Radio color='secondary' />} label="Date" />
                 </RadioGroup>
             </FormControl>
         </Card>

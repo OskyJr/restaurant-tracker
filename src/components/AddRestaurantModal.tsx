@@ -14,9 +14,8 @@ const style: SxProps<Theme> = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 3,
   borderRadius: '0.5rem',
 };
 
@@ -27,8 +26,8 @@ export const AddRestaurantModal = () => {
   const [value, setValue] = React.useState<number | null>(2);
 
   return (
-    <Box p={1}>
-      <Button variant="outlined" onClick={handleOpen}>
+    <Box p={2}>
+      <Button variant="contained" color='secondary' onClick={handleOpen}>
         <AddIcon />
         New
       </Button>
@@ -76,7 +75,7 @@ export const AddRestaurantModal = () => {
           </Typography>
           <ImageUpload />
           <Box display="flex" justifyContent="flex-end">
-            <Button onClick={handleClose}> Submit</Button>
+            <Button color="secondary" onClick={handleClose}> Submit</Button>
           </Box>
         </Box>
       </Modal >

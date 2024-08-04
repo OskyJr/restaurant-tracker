@@ -12,7 +12,7 @@ export const ImageUpload = () => {
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
-            <Button variant="contained" component="label">
+            <Button color="secondary" variant="contained" component="label">
                 Choose File
                 <input
                     type="file"

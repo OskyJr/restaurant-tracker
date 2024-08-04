@@ -17,9 +17,8 @@ const style: SxProps<Theme> = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  p: 3,
   borderRadius: '0.5rem',
 };
 
@@ -162,6 +161,7 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
         </Typography>
         <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
           <Rating
+            readOnly
             name="simple-controlled"
             value={restOfProps.rating}
           />
@@ -195,9 +195,9 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
               horizontal: 'left',
             }}
           >
-            <Button onClick={() => [setIsEditMode(true), setPopoverOpen(false)]}> Edit</Button>
+            <Button color="secondary" onClick={() => [setIsEditMode(true), setPopoverOpen(false)]}> Edit</Button>
             <Divider />
-            <Button> Delete</Button>
+            <Button color="secondary"> Delete</Button>
           </Popover>
         </Box>
       </>
@@ -206,7 +206,7 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
   }
 
   return (
-    <Box p={1}>
+    <Box>
       <Modal
         open={open}
         onClose={handleClose}

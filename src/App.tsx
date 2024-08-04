@@ -2,7 +2,8 @@ import './App.css'
 import { mockRestaurantDataList } from './mocks/RestaurantData.mock'
 import { RestaurantsView } from './pages/RestaurantsView'
 import { SideBar } from './components/SideBar'
-import { Grid } from '@mui/material'
+import { Grid, ThemeProvider, Typography } from '@mui/material'
+import theme from './theme'
 
 function App() {
   // const theme = useTheme();
@@ -11,8 +12,9 @@ function App() {
   // const isLargeScreen = useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <>
-      <h1>Restaurants Visited (by yours truely)</h1>
+    <ThemeProvider theme={theme}>
+      <Typography variant="h1">Restaurants Visited</Typography>
+      <Typography>By yours truely</Typography>
       <Grid container spacing={2} p={1} m={1} gap={2}>
         <Grid xs={2}>
           <SideBar />
@@ -29,7 +31,7 @@ function App() {
           <RestaurantsView restaurantList={mockRestaurantDataList} />
         </Grid>
       </Grid> */}
-    </>
+    </ThemeProvider>
   )
 }
 
