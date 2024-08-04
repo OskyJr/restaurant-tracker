@@ -27,7 +27,7 @@ export const AddRestaurantModal = () => {
 
   return (
     <Box p={2}>
-      <Button variant="contained" color='secondary' onClick={handleOpen} startIcon={<AddIcon />}>
+      <Button variant="contained" color="secondary" onClick={handleOpen} startIcon={<AddIcon />}>
         New
       </Button>
       <Modal
@@ -37,25 +37,33 @@ export const AddRestaurantModal = () => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
+          <Typography
+            fontWeight="bold"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            paddingTop={2}
+          >
             Restaurant Name
           </Typography>
-          <TextField
-            fullWidth
-            margin="normal"
-            required
-            id="outlined-required"
-            label="Required"
-          />
-          <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
+          <TextField fullWidth margin="normal" required id="outlined-required" label="Required" />
+          <Typography
+            fontWeight="bold"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            paddingTop={2}
+          >
             Address
           </Typography>
-          <TextField
-            fullWidth
-            margin="normal"
-            id="outlined-required"
-          />
-          <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
+          <TextField fullWidth margin="normal" id="outlined-required" />
+          <Typography
+            fontWeight="bold"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            paddingTop={2}
+          >
             Rating
           </Typography>
           <Rating
@@ -65,25 +73,34 @@ export const AddRestaurantModal = () => {
               setValue(newValue);
             }}
           />
-          <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
+          <Typography
+            fontWeight="bold"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            paddingTop={2}
+          >
             Description
           </Typography>
-          <TextField
-            fullWidth
-            margin="normal"
-            multiline
-            rows={4}
-            id="outlined-required"
-          />
-          <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
+          <TextField fullWidth margin="normal" multiline rows={4} id="outlined-required" />
+          <Typography
+            fontWeight="bold"
+            id="modal-modal-title"
+            variant="h6"
+            component="h2"
+            paddingTop={2}
+          >
             Upload Image
           </Typography>
           <ImageUpload />
           <Box display="flex" justifyContent="flex-end">
-            <Button color="secondary" onClick={handleClose}> Submit</Button>
+            <Button color="secondary" onClick={handleClose}>
+              {' '}
+              Submit
+            </Button>
           </Box>
         </Box>
-      </Modal >
+      </Modal>
     </Box>
   );
-}
+};
