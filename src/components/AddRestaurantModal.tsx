@@ -17,6 +17,8 @@ const style: SxProps<Theme> = {
   boxShadow: 24,
   p: 3,
   borderRadius: '0.5rem',
+  maxHeight: '80vh',
+  overflowY: 'auto',
 };
 
 export const AddRestaurantModal = () => {

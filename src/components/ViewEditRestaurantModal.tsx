@@ -82,7 +82,7 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
 
   const renderEdit = () => {
     return (
-      <>
+      <Box sx={{ maxHeight: '80vh', overflowY: 'auto', p: 2 }}>
         <Typography
           fontWeight="bold"
           id="modal-modal-title"
@@ -203,7 +203,7 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
         <Box display="flex" justifyContent="flex-end">
           <Button onClick={() => setIsEditMode(false)}> Update</Button>
         </Box>
-      </>
+      </Box>
     );
   };
 
