@@ -36,7 +36,7 @@ export const mockRestaurantDataList: RestaurantCardProps[] = [
   },
   {
     ...mockRestaurantData,
-    id: '3',
+    id: '4',
     name: "Fish & Co",
     description: "Casual, family restaurant chain serving fresh seafood in a pan, a unique dining experience that drew inspiration from the Mediterranean fishermen who caught seafood fresh from the seas, cooked and ate it straight from the pan.",
     rating: RestaurantRating.FOUR_STAR,

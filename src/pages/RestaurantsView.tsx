@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { RestaurantCard, RestaurantCardProps } from "../components/RestaurantCard";
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { ViewEditRestaurantModal } from "../components/ViewEditRestaurantModal";
+import theme from "../theme";
 
 export interface RestaurantViewProps {
     restaurantList: RestaurantCardProps[];
@@ -14,7 +15,6 @@ export const RestaurantsView = (props: RestaurantViewProps): JSX.Element => {
     const [selectedRestaurant, setSelectedRestaurant] = useState<string | null>(null);
     const [editRestaurant, setEditRestaurant] = useState<Omit<RestaurantCardProps, 'onClickCallback'> | null>(null);
 
-    const theme = useTheme();
     const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     const isMediumScreen = useMediaQuery(theme.breakpoints.between('sm', 'md'));
 

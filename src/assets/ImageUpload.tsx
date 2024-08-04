@@ -12,7 +12,13 @@ export const ImageUpload = () => {
 
     return (
         <Box display="flex" flexDirection="column" alignItems="center" mt={4}>
-            <Button color="secondary" variant="contained" component="label">
+            {selectedImage && (
+                <Box>
+                    <Typography variant="body1">Preview:</Typography>
+                    <img src={selectedImage} alt="Selected" width="300" />
+                </Box>
+            )}
+            <Button color="secondary" variant="contained" component="label" >
                 Choose File
                 <input
                     type="file"
@@ -21,12 +27,6 @@ export const ImageUpload = () => {
                     onChange={handleImageChange}
                 />
             </Button>
-            {selectedImage && (
-                <Box mt={2}>
-                    <Typography variant="body1">Preview:</Typography>
-                    <img src={selectedImage} alt="Selected" width="300" />
-                </Box>
-            )}
         </Box>
     );
 };

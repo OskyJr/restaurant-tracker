@@ -9,6 +9,11 @@ import { RestaurantCardProps } from './RestaurantCard';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CloseIcon from '@mui/icons-material/Close';
 import { RestaurantRating } from '../interfaces/RestaurantInterface';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 const style: SxProps<Theme> = {
   position: 'absolute',
@@ -25,6 +30,7 @@ const style: SxProps<Theme> = {
 export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
   const [open] = React.useState(true);
   const [popoverOpen, setPopoverOpen] = React.useState(false);
+  const [dialogOpen, setDialogOpen] = React.useState(false);
   const [isEditMode, setIsEditMode] = React.useState(false);
   const { id, onClickCallback, ...restOfProps } = props;
   const [editableFields, setEditableFields] = React.useState<Omit<RestaurantCardProps, 'onClickCallback'>>({
@@ -50,6 +56,9 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
       }
     )
   }
+  const onDelete = () => {
+    setDialogOpen(true);
+  }
 
   const handlePopoverClose = () => {
     setAnchorEl(null);
@@ -59,10 +68,12 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
   const renderEdit = () => {
     return (
       <>
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
           Restaurant Name
         </Typography>
         <TextField
+          fullWidth
+          margin="normal"
           required
           id="outlined-required"
           label="Required"
@@ -74,10 +85,12 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
             })
           }}
         />
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
           Address
         </Typography>
         <TextField
+          fullWidth
+          margin="normal"
           id="outlined-required"
           value={editableFields.address}
           onChange={(event) => {
@@ -87,7 +100,7 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
             })
           }}
         />
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
           Rating
         </Typography>
         <Rating
@@ -100,10 +113,12 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
             })
           }}
         />
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
           Description
         </Typography>
         <TextField
+          fullWidth
+          margin="normal"
           value={editableFields.description}
           multiline
           rows={4}
@@ -115,7 +130,7 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
             })
           }}
         />
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={2}>
           Uploaded Image
         </Typography>
         {
@@ -148,6 +163,40 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
     )
   }
 
+  const renderDialog = () => {
+    return (
+      <Dialog
+        open={dialogOpen}
+        onClose={() => {
+          setDialogOpen(false);
+        }}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          {"Are you sure you want to delete this restaurant?"}
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            This process cannot be reversed and the data will not be recoverable in future
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button color='secondary' onClick={() => {
+            setDialogOpen(false);
+          }}>Cancel</Button>
+          <Button color='secondary' onClick={() => {
+            setDialogOpen(false);
+            setPopoverOpen(false);
+            onClickCallback(id, false);
+          }} autoFocus>
+            Confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
+    )
+  }
+
   const renderView = () => {
     return (
       <>
@@ -156,30 +205,30 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
           image={restOfProps.images.length ? restOfProps.images[0] : ''}
           title={restOfProps.name}
         />
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={1}>
           {editableFields.name}
         </Typography>
-        <Box display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
+        <Box alignItems="center" display={'flex'} flexDirection={'row'} justifyContent={'space-between'}>
           <Rating
             readOnly
             name="simple-controlled"
             value={restOfProps.rating}
           />
-          <Typography id="modal-modal-title" variant="h6" component="h2" padding={1}>
+          <Typography id="modal-modal-title" variant="h6" component="h2" paddingTop={1}>
             {new Date(restOfProps.dateAdded).toLocaleDateString()}
           </Typography>
         </Box>
         <Divider />
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={1}>
           Description
         </Typography>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-modal-title" component="h2">
           {restOfProps.description}
         </Typography>
-        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" padding={1}>
+        <Typography fontWeight="bold" id="modal-modal-title" variant="h6" component="h2" paddingTop={1}>
           Address
         </Typography>
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography id="modal-modal-title" component="h2">
           {restOfProps.address}
         </Typography>
         <Box display="flex" justifyContent="flex-end">
@@ -197,8 +246,9 @@ export const ViewEditRestaurantModal = (props: RestaurantCardProps) => {
           >
             <Button color="secondary" onClick={() => [setIsEditMode(true), setPopoverOpen(false)]}> Edit</Button>
             <Divider />
-            <Button color="secondary"> Delete</Button>
+            <Button color="secondary" onClick={() => onDelete()}> Delete</Button>
           </Popover>
+          {renderDialog()}
         </Box>
       </>
 

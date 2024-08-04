@@ -17,7 +17,7 @@ export const SideBar = () => {
                     name="radio-buttons-group"
                 >
                     <FormControlLabel value="Name" control={<Radio color='secondary' />} label="Name" />
-                    <FormControlLabel value="Date" control={<Radio color='secondary' />} label="Date" />
+                    <FormControlLabel value="Date" control={<Radio color='secondary' />} label="Latest Date" />
                 </RadioGroup>
             </FormControl>
         </Card>
